@@ -1,9 +1,13 @@
-var express = require('express');
-var router = express.Router();
+'use strict';
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
-});
+var front = require('./front');
+var api   = require('./api');
 
-module.exports = router;
+function routes(app) {
+  // 前端
+  app.use('/', front);
+  // 接口
+  app.use('/api', api);
+}
+
+module.exports = routes;

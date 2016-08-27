@@ -1,9 +1,11 @@
-var express = require('express');
-var router = express.Router();
+'use strict';
 
-/* GET users listing. */
+var express = require('express');
+var router  = express.Router();
+
+// test
 router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
+  res.json({api: 'ok'});
 });
 
 module.exports = router;
