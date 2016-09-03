@@ -5,9 +5,9 @@ var db        = require('../models');
 var reject    = BBPromise.reject;
 
 module.exports = {
-  getWeibo: getWeibo
+  list: list
 };
 
-function getWeibo(req, res, next) {
+function list() {
   return db.Weibo.findAndCount();
 }
