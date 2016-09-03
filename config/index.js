@@ -1,6 +1,6 @@
 'use strict';
 
-var config = {
+module.exports = {
   db: {
     username: 'root',
     password: '',
@@ -12,5 +12,3 @@ var config = {
     }
   }
 };
-
-module.exports = config;

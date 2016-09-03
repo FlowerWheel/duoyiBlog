@@ -15,7 +15,10 @@
     "serve-favicon": "~2.3.0",
     "mysql": "~2.11.1",
     "sequelize": "~3.24.1",
-    "vue":"1.0.26",
-    "bluebird":"3.4.6"
+    "bluebird": "~3.4.6",
+    "vue": "~1.0.26",
+    "vue-loader": "~8.5.3",
+    "vue-router": "~0.7.13",
+    "webpack": "~1.13.2"
   }
 }

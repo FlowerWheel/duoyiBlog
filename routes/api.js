@@ -1,39 +1,41 @@
 'use strict';
 
-var express = require('express');
-var weibo   = require('../controllers/weibo');
-var router  = express.Router();
+var express   = require('express');
+var BBPromise = require('bluebird');
+var weibo     = require('../controllers/weibo');
+var comment   = require('../controllers/comment');
+var router    = express.Router();
 
-
-function proxy(func){
-  return function(req,res,next){
-    func(req,res,next)
+function proxy(fn) {
+  return function (req, res, next) {
+    // 使用Promise连接
+    BBPromise.resolve()
+      .then(function () {
+        return fn(req, res, next);
+      })
       .then(function (data) {
-        res.json({code:0,msg: data});
+        res.json({code: 200, msg: data});
       })
       .catch(function (error) {
-        res.json({error: error});
+        res.json({error: error.message || error});
       });
+  };
+}
+
+var methods = ['get', 'post', 'patch', 'delete'];
+// router方法扩展
+methods.map(function (method) {
+  var ext = method + 'Ext';
+  router[ext] = function (path, fn) {
+    router[method](path, proxy(fn));
   }
-}
-
-//router get扩展
-router.getEx=function(path,func) {
-  router.get(path,proxy(func))
-}
-
-//router post扩展
-router.postEx=function(path,func) {
-  router.post(path,proxy(func))
-}
-
-
-// test
-router.get('/', function(req, res, next) {
-  res.json({api: 'ok'});
 });
 
 // 微博
-router.getEx('/weibo', weibo.getWeibo);
+router.getExt('/weibo', weibo.list);
+// 评论微博
+router.postExt('/comment/:weiboID', comment.add);
+// 删除评论
+router.deleteExt('/comment/:commentID', comment.remove);
 
 module.exports = router;

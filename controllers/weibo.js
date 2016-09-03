@@ -1,23 +1,13 @@
 'use strict';
 
-var db = require('../models');
-
-
+var BBPromise = require('bluebird');
+var db        = require('../models');
+var reject    = BBPromise.reject;
 
 module.exports = {
-  getWeibo: getWeibo
+  list: list
 };
 
-function getWeibo(req, res, next) {
+function list() {
   return db.Weibo.findAndCount();
-//     return db.Weibo.findAndCount().
-//       then(data){
-//    return next({name:'',msg:""})
-//  }
-//    .then(function (weibo) {
-//      res.json({data: weibo});
-//    })
-//    .catch(function (error) {
-//      res.json({error: error});
-//    });
 }
