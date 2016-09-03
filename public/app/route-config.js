@@ -7,7 +7,7 @@ module.exports = function (router) {
       component: require('./views/weibo-list.vue')
     }
   });
-  
+  // 未匹配的路径重定向
   router.redirect({
     '*': '/list'
   });

@@ -48,9 +48,13 @@
 	
 	var Vue = __webpack_require__(1);
 	var VueRouter = __webpack_require__(3);
-	Vue.use(VueRouter);
+	
 	var app = Vue.extend(__webpack_require__(4));
+	Vue.use(VueRouter);
+	
 	var router = new VueRouter();
+	
+	
 	__webpack_require__(7)(router);
 	router.start(app, '#app');
 
@@ -13029,7 +13033,7 @@
 	      component: __webpack_require__(8)
 	    }
 	  });
-	  
+	  // 未匹配的路径重定向
 	  router.redirect({
 	    '*': '/list'
 	  });
