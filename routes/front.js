@@ -1,11 +1,8 @@
 'use strict';
 
-var express = require('express');
-var router  = express.Router();
-
-// 首页
-router.get('/', function(req, res, next) {
-  res.render('index');
-});
-
-module.exports = router;
+module.exports = function (router) {
+  // 首页
+  router.get('/', function(req, res, next) {
+    res.render('index');
+  });
+};
